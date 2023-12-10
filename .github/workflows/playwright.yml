@@ -30,6 +30,7 @@ jobs:
           pip install allure-pytest
           pip install pytest pytest-html
           pip install -e .
+          playwright install
 
       - name: Run your tests
         run: pytest
