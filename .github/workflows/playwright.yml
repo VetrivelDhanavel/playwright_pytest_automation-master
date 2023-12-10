@@ -31,6 +31,14 @@ jobs:
           pip install pytest pytest-html
           pip install -e .
           playwright install
+    
+      - name: Generate Allure Report
+        run: |
+            # Run Allure command to generate the report
+            allure generate --clean -o allure-report
+            
+            # Optionally, you can serve the report locally
+            # allure serve allure-report
 
       - name: Run your tests
         run: pytest
