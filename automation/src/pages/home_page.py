@@ -9,9 +9,15 @@ class HomePage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
 
-    def load(self) -> None:
-        self.page.goto(TestData.URL)
+    # def load(self) -> None:
+    #     self.page.goto(TestData.URL)
 
+    def wait_for_load_completion(self):
+        self.page.wait_for_load_state("load")
+
+    def load(self) -> None:
+        self.page.goto(TestData.URL, options={"http2": False})
+        
     def click_login(self):
         self.page.wait_for_timeout(2000)
         self.page.wait_for_selector(Noon.LOGIN).click()
