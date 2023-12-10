@@ -1,6 +1,5 @@
 import pytest
 from playwright.sync_api import sync_playwright, Page
-
 from automation.src.pages.home_page import HomePage
 
 
@@ -19,7 +18,7 @@ def context(playwright):
 
 
 @pytest.fixture
-def page(context):  # Make sure to use the 'context' fixture as a dependency for the 'page' fixture
+def page(context):
     return context.new_page()
 
 
