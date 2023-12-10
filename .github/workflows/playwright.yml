@@ -31,6 +31,14 @@ jobs:
           pip install pytest pytest-html
           pip install -e .
           playwright install
+          
+      - name: Install Allure
+        run: |
+          # Download and install Allure
+          wget https://github.com/allure-framework/allure2/releases/download/2.14.0/allure-2.14.0.tgz
+          tar -zxvf allure-2.14.0.tgz
+          sudo ln -s $(pwd)/allure-2.14.0/bin/allure /usr/bin/allure
+
     
       - name: Generate Allure Report
         run: |
