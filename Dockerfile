@@ -1,41 +1,43 @@
-# Use a base image with Python and Node.js
-FROM python:3.8-slim
 
-# Set the working directory
-WORKDIR /app
+# Build Environment: Playwright
+FROM mcr.microsoft.com/playwright/python:v1.21.0-focal
+
+EXPOSE 8000
+
+WORKDIR /fastanalytics
+
+COPY /requirements.txt /fastanalytics/requirements.txt
+
+RUN pip install --no-cache-dir --upgrade -r /fastanalytics/requirements.txt
+
+RUN playwright install
+RUN playwright install-deps
+RUN apt-get update && apt-get upgrade -y
+
+
+
+# Install Allure for reporting
+RUN pip install allure-pytest
 
 # Install Playwright dependencies
-RUN apt-get update && apt-get install -y \
-    curl \
-    libnss3 \
-    libglib2.0-0 \
-    libx11-6 \
-    libx11-xcb1 \
-    libxcb1 \
-    libxcomposite1 \
-    libxcursor1 \
-    libxdamage1 \
-    libxi6 \
-    libxtst6 \
-    libatspi2.0-0 \
-    libgtk-3-0 \
-    xvfb \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install Node.js and Playwright
-RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
-RUN npm install -g playwright
-
-# Copy and install Python dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy the test scripts
-COPY . .
-
-# Set environment variables (modify as needed)
-ENV DISPLAY=:99
-ENV PLAYWRIGHT_BROWSERS_PATH=/usr/lib/node_modules/playwright/browser-install
+RUN playwright install-deps
 
 # Run the tests
-CMD ["pytest", "-v", "tests/"]
+CMD ["xvfb-run", "pytest", "-v", "automation/tests"]
+## Add python script to Docker
+#COPY index.py /
+#
+## Run Python script
+#CMD [ "python", "index.py" ]
+#
+#FROM python:3.10.7
+#
+#ENV PYTHONDONTWRITEBYTECODE=1
+#ENV PLAYWRIGHT_BROWSERS_PATH=/app/ms-playwright
+## Turns off buffering for easier container logging
+#ENV PYTHONUNBUFFERED=1
+##..... whatever else you need
+#RUN pip install playwright
+## install manually all the missing libraries
+#RUN apt-get install -y gconf-service libasound2 libatk1.0-0 libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libxss1 fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils
+#RUN PLAYWRIGHT_BROWSERS_PATH=/app/ms-playwright python -m playwright install --with-deps chromium
