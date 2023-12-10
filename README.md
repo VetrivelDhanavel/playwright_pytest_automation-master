@@ -40,26 +40,6 @@ Key Features of pytest:
   
  To start using pytest, you need to install it using pip and create test functions within your Python project. By leveraging pytest's features, you can build a comprehensive test suite to validate the functionality of your Python code and ensure its robustness. 
  
- ![Alt Text](https://get.jenkins.io/art/jenkins-logo/favicon.ico)  
- ## Jenkins
- ## What is Jenkins?
-
-Jenkins is an open-source automation server that facilitates the continuous integration and continuous delivery (CI/CD) of software projects.It is one of the most widely used tools for automating the build, test, and deployment processes in the software development lifecycle.
- 
-Key Features of Jenkins:
-
-* Continuous Integration (CI)
-* Continuous Delivery (CD)
-* Extensibility
-* Distributed Builds
-* Pipeline Support
-* Security and Access Control
-* Monitoring and Notifications
-* Ease of Use
-* Community and Support
-
-To set up Jenkins, you can install it on a server and access it through a web browser. Once configured, Jenkins can automate various tasks like building, testing, and deploying your software, streamlining your development workflow and improving overall software quality.
-
 
 
 

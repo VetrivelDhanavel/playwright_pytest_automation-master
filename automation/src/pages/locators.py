@@ -1,3 +1,2 @@
-
-class AlphaCode:
-    CONTACTS = "//span[text()='Contact']"
+class Noon:
+    LOGIN = "//span[text()='Log in']"

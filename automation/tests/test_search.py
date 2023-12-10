@@ -1,17 +1,11 @@
 import allure
 
 
-def test_alpha_code_search(MyHomePage):
+@allure.title("Noon Search Test")
+def test_noon_search(my_home_page):
     with allure.step("Load the home page"):
-        MyHomePage.load()
+        my_home_page.load()
 
-    # Assert that the page title contains "e"
-    with allure.step("Assert that the page title contains 'e'"):
-        assert "Home - Alphacode" in MyHomePage.page.title(), "The alphacode website is loaded successfully."
+    with allure.step("Click the Login button"):
+        my_home_page.click_login()
 
-
-def test_navigate_to_contact(MyHomePage):
-    with allure.step("Load the home page"):
-        MyHomePage.load()
-    with allure.step("Navigate to the contact page"):
-        MyHomePage.navigate_to_contact()

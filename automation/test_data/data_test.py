@@ -2,4 +2,4 @@ class TestData:
     """
     All data values across the pages
     """
-    URL = "https://alphacode.org.in/"
+    URL = "https://www.noon.com/uae-en/"
