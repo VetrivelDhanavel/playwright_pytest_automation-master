@@ -12,8 +12,7 @@ def playwright():
 
 @pytest.fixture(scope='function')
 def context(playwright):
-    # browser = playwright.chromium.launch(headless=False, args=['--no-sandbox', '--disable-setuid-sandbox'])
-    browser = playwright.chromium.launch(headless=True)
+    browser = playwright.firefox.launch(headless=True)
     context = browser.new_context()
     yield context
     context.close()
