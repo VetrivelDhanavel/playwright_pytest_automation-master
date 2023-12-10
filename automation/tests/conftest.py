@@ -13,7 +13,7 @@ def playwright():
 @pytest.fixture(scope='function')
 def context(playwright):
     # browser = playwright.chromium.launch(headless=True)
-    browser = playwright.chromium.launch(headless=True, args=['--no-sandbox'])
+    browser = playwright.chromium.launch(headless=False, args=['--no-sandbox'])
     context = browser.new_context()
     yield context
     context.close()
