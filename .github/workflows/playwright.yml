@@ -23,8 +23,7 @@ jobs:
           pip install --upgrade pip setuptools
           pip install -r requirements.txt
           pip install pytest pytest-html
-          pip install pytest-allure
-          pytest --html=report.html
+          pip install pytest-allure-adaptor
           pip install -e .
       - name: Run your tests
         run: pytest
