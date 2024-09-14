@@ -1,14 +1,16 @@
-FROM mcr.microsoft.com/playwright/python:v1.40.0-jammy
+FROM python:3.10-slim
 
 WORKDIR /app
 
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Install Playwright and its browsers
+RUN pip install pytest-playwright && playwright install
+
+# Copy project files
 COPY . .
 
-RUN pip install --upgrade pip
-RUN pip install --upgrade pip setuptools
-RUN pip install -r requirements.txt
-RUN pip install allure-pytest
-RUN pip install pytest pytest-html
-RUN pip install -e .
-
+# Command to run tests
 CMD ["pytest"]
