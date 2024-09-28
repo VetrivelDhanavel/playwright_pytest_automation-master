@@ -10,8 +10,7 @@ class HomePage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
 
-    # def load(self) -> None:
-    #     self.page.goto(TestData.URL)
+
 
     def wait_for_load_completion(self):
         self.page.wait_for_load_state("load")

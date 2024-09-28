@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-playwright-project
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-playwright-project
+  template:
+    metadata:
+      labels:
+        app: my-playwright-project
+    spec:
+      containers:
+      - name: my-playwright-project
+        image: my-playwright-project:latest
+        command: ["pytest", "tests"]
